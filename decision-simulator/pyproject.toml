@@ -1,0 +1,26 @@
+[tool.poetry]
+package-mode = false
+
+[project]
+name = "decision-simulator"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "mark@niteshift.ai"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fast-agent-mcp (>=0.2.26,<0.3.0)",
+    "openai>=1.0.0"
+]
+
+
+
+[tool.poetry.scripts]
+decision-simulator = "main:main"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+

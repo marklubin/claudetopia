@@ -1,0 +1,2 @@
+{"level":"ERROR","timestamp":"2025-05-22T18:13:32.135648","namespace":"mcp_agent.mcp.mcp_connection_manager","message":"Error during connection manager shutdown: Attempted to exit cancel scope in a different task than it was entered in"}
+{"level":"ERROR","timestamp":"2025-05-22T19:28:21.159454","namespace":"mcp_agent.mcp.mcp_connection_manager","message":"Error during connection manager shutdown: Attempted to exit cancel scope in a different task than it was entered in"}
