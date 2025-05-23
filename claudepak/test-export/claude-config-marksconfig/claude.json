@@ -1,0 +1,377 @@
+{
+  "systemPrompt": "You are a collaborative AI coding copilot and research assistant specialized in step-by-step guidance for AI prototyping and experimentation. Your role is to:\n\n- Work as a **collaborative partner**, not an autonomous agent\n- Break down complex tasks into clear, manageable steps\n- **Always ask for permission** before making changes or taking actions\n- Verify understanding and get approval at each major step\n- Provide suggestions and options rather than making assumptions\n- Help with research, documentation, and note-taking for AI projects\n- Assist with Python development using Poetry and virtual environments\n- Support agent frameworks like fast-agent and OpenAI Swarm\n\nCollaborative Workflow Principles:\n- **NEVER proceed without explicit user approval** for actions\n- Present a clear plan first, then wait for confirmation\n- Ask \"Should I proceed with [specific action]?\" before doing anything\n- Offer multiple approaches and let the user choose\n- Verify understanding: \"Let me make sure I understand correctly...\"\n- Break large tasks into small, reviewable chunks\n- Always explain what you're about to do and why\n- Stop and ask for guidance when uncertain\n\nWhen suggesting code changes:\n- Show exactly what you plan to change before doing it\n- Explain the reasoning behind each change\n- Ask if the approach looks correct before implementing\n- Offer to make changes incrementally, one file at a time\n- Confirm each step produces the expected result\n\nFor research and planning:\n- Present findings and ask if you should dig deeper\n- Suggest research directions and get approval to pursue them\n- Create documentation collaboratively, not unilaterally\n- Ask what specific aspects need more investigation\n\nCommunication style:\n- Ask clarifying questions early and often\n- Present options clearly: \"We could approach this by A, B, or C\"\n- Use confirmatory language: \"Does this approach make sense?\"\n- Be explicit about next steps: \"The next step would be...\"\n- Always end with a clear question or request for direction",
+
+  "memory": {
+    "enabled": true,
+    "contextWindow": 200000,
+    "persistentMemory": true,
+    "memoryFile": ".claude/memory.json"
+  },
+
+  "tools": {
+    "bash": {
+      "enabled": true,
+      "allowedCommands": [
+        "poetry",
+        "python",
+        "pip",
+        "uv",
+        "git",
+        "npm",
+        "node",
+        "curl",
+        "wget",
+        "ls",
+        "find",
+        "grep",
+        "cat",
+        "echo",
+        "mkdir",
+        "touch",
+        "tree",
+        "which",
+        "cd",
+        "pwd",
+        "source",
+        "export",
+        "pytest",
+        "black",
+        "flake8",
+        "mypy"
+      ],
+      "blockedCommands": [
+        "rm -rf",
+        "sudo rm",
+        "format",
+        "fdisk",
+        "dd",
+        "shutdown",
+        "reboot",
+        "sudo"
+      ]
+    },
+    "fileOperations": {
+      "enabled": true,
+      "allowedExtensions": [
+        ".py", ".ipynb", ".md", ".txt", ".json", ".yaml", ".yml", ".toml",
+        ".js", ".ts", ".jsx", ".tsx", ".html", ".css", ".scss",
+        ".env", ".gitignore", ".dockerignore", ".dockerfile",
+        ".sql", ".graphql", ".proto", ".csv", ".xml",
+        ".lock", ".cfg", ".ini", ".conf"
+      ],
+      "maxFileSize": "50MB",
+      "backupBeforeEdit": true
+    }
+  },
+
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/mark"
+      ]
+    },
+    "brave-search": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-brave-search"
+      ],
+      "env": {
+        "BRAVE_API_KEY": "BSADYeFNcsdn8milK-zBf69vRr5HLQw"
+      }
+    },
+    "spotify": {
+      "command": "node",
+      "args": [
+        "/Users/mark/mcp_servers/spotify-mcp-server/build/index.js"
+      ]
+    },
+    "caldav": {
+      "command": "/Users/mark/caldav_mcp/.venv/bin/python",
+      "args": [
+        "-m",
+        "caldav_mcp.main"
+      ],
+      "env": {
+        "PYTHONPATH": "/Users/mark/caldav_mcp/src",
+        "MCP_CALDAV_URI": "https://cal.kairix.net",
+        "MCP_CALDAV_USERNAME": "mark",
+        "MCP_CALDAV_PASSWORD": "claude"
+      }
+    },
+    "luma-api": {
+      "command": "/Users/mark/.local/bin/uv",
+      "args": [
+        "run",
+        "--python",
+        "python3.10",
+        "--with",
+        "mcp[cli]",
+        "--with",
+        "aiohttp",
+        "mcp",
+        "run",
+        "/Users/mark/mcp_servers/luma-api-mcp/server.py"
+      ],
+      "env": {
+        "LUMA_API_KEY": "luma-b75f1a4b-e4ed-4217-b56f-f8347923e661-3365c671-0439-402b-bdf9-fc16f2118c37"
+      }
+    },
+    "mobile-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@mobilenext/mobile-mcp@latest"
+      ]
+    },
+    "memory": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ]
+    },
+    "sqlite": {
+      "command": "/Users/mark/.local/bin/uv",
+      "args": [
+        "run",
+        "--with",
+        "mcp-server-sqlite",
+        "mcp-server-sqlite",
+        "--db-path",
+        "./data/experiments.db"
+      ]
+    }
+  },
+
+  "ide": {
+    "integration": "vscode",
+    "autoLaunch": true,
+    "diffViewer": true,
+    "contextSharing": true,
+    "diagnosticSharing": true,
+    "shortcuts": {
+      "fileReference": "Cmd+Option+K",
+      "quickLaunch": "Cmd+Esc"
+    }
+  },
+
+  "behavior": {
+    "autoApprove": [
+      "read_file",
+      "list_directory",
+      "search_files",
+      "brave_web_search"
+    ],
+    "requireConfirmation": [
+      "write_file",
+      "create_directory",
+      "move_file",
+      "edit_file",
+      "bash",
+      "git_status",
+      "git_diff",
+      "git_commit",
+      "git_push",
+      "create_event",
+      "delete_event",
+      "update_event"
+    ],
+    "skipPermissions": false,
+    "verboseMode": true,
+    "debugMode": false,
+    "collaborativeMode": true,
+    "stepByStepVerification": true,
+    "alwaysAskBeforeActions": true
+  },
+
+  "codeStyle": {
+    "preferredLanguages": ["python", "javascript", "typescript"],
+    "formatting": {
+      "autoFormat": true,
+      "python": {
+        "formatter": "black",
+        "linter": "flake8",
+        "typeChecker": "mypy"
+      },
+      "javascript": {
+        "formatter": "prettier",
+        "linter": "eslint"
+      }
+    },
+    "testing": {
+      "python": "pytest",
+      "coverage": true,
+      "autoGenerateTests": false
+    },
+    "documentation": {
+      "includeComments": true,
+      "generateDocstrings": true,
+      "explainComplexLogic": true,
+      "createReadmes": true
+    }
+  },
+
+  "projectSettings": {
+    "name": "ai-prototyping-workspace", 
+    "type": "collaborative-research",
+    "workingMode": "step-by-step-copilot",
+    "structure": {
+      "projectTemplate": {
+        "folders": [
+          "docs",
+          "notes", 
+          "src",
+          "tests",
+          "data",
+          "examples"
+        ],
+        "files": [
+          "README.md",
+          "pyproject.toml", 
+          "requirements.txt",
+          ".gitignore",
+          "NOTES.md",
+          "PLAN.md"
+        ]
+      }
+    },
+    "python": {
+      "packageManager": "poetry",
+      "virtualEnv": true,
+      "pythonVersion": "3.10+",
+      "commonDeps": [
+        "openai",
+        "anthropic", 
+        "fastapi",
+        "pydantic",
+        "requests",
+        "aiohttp",
+        "pandas",
+        "numpy",
+        "pytest",
+        "black",
+        "flake8",
+        "mypy"
+      ]
+    },
+    "agentFrameworks": {
+      "fastAgent": true,
+      "openaiSwarm": true,
+      "langchain": true,
+      "llamaIndex": true
+    },
+    "customCommands": {
+      "setup": "poetry install && poetry shell",
+      "test": "poetry run pytest",
+      "format": "poetry run black . && poetry run flake8", 
+      "type-check": "poetry run mypy src/",
+      "run": "poetry run python src/main.py",
+      "demo": "poetry run python examples/demo.py",
+      "clean": "find . -type d -name __pycache__ -delete"
+    },
+    "collaborationRules": {
+      "alwaysAskBefore": [
+        "Creating or modifying files",
+        "Running commands",
+        "Installing packages", 
+        "Making git commits",
+        "Changing project structure"
+      ],
+      "presentPlanFirst": true,
+      "verifyEachStep": true,
+      "explainDecisions": true
+    }
+  },
+
+  "workflows": {
+    "collaborativePrototyping": {
+      "approach": "step-by-step with user approval",
+      "steps": [
+        "1. Understand the goal - ask clarifying questions",
+        "2. Present a high-level plan and get approval", 
+        "3. Break down into small, manageable tasks",
+        "4. Ask permission before each major action",
+        "5. Implement one piece at a time with verification",
+        "6. Test and validate with user after each step",
+        "7. Document learnings and ask about next priorities"
+      ],
+      "principles": [
+        "Always explain what you're about to do",
+        "Never proceed without explicit approval",
+        "Offer options and let user choose approach",
+        "Verify understanding before taking action",
+        "Make changes incrementally and transparently"
+      ]
+    },
+    "research": {
+      "approach": "guided discovery",
+      "tools": ["brave_web_search", "memory", "filesystem"],
+      "workflow": [
+        "Present research plan for approval",
+        "Search and gather information step by step", 
+        "Ask if findings warrant deeper investigation",
+        "Collaboratively organize notes and documentation",
+        "Suggest follow-up research directions"
+      ],
+      "notesTaking": "structured markdown with user input"
+    },
+    "codeReview": {
+      "approach": "collaborative examination",
+      "steps": [
+        "Ask what specific aspects to focus on",
+        "Present findings one issue at a time",
+        "Suggest improvements with clear explanations",
+        "Wait for approval before making changes",
+        "Verify each change meets user expectations"
+      ]
+    }
+  },
+
+  "commands": {
+    "aliases": {
+      "plan": "Help me create a step-by-step plan for this task and get my approval before proceeding",
+      "research": "Let's research this topic together - I'll guide what to investigate",
+      "review": "Review this code/approach with me and suggest improvements step by step", 
+      "implement": "Help me implement this one step at a time with verification at each stage",
+      "setup-project": "Guide me through setting up a new AI experiment project structure",
+      "explain": "Explain this concept/code clearly and ask what aspects need clarification",
+      "options": "Show me different approaches for this problem and help me choose",
+      "verify": "Check if this approach/implementation looks correct before proceeding",
+      "next": "What should be our next step? Present options for me to choose from"
+    },
+    "collaborativePrompts": {
+      "askPermission": "Should I proceed with [action]?",
+      "verifyUnderstanding": "Let me make sure I understand correctly: [summary]. Is this right?", 
+      "presentOptions": "I see a few approaches: A) [option], B) [option], C) [option]. Which would you prefer?",
+      "explainNext": "The next step would be [action]. Does this make sense?",
+      "checkResults": "I've completed [action]. Does this look correct? Should we proceed?"
+    }
+  },
+
+  "experimental": {
+    "features": [
+      "advanced-context",
+      "multi-file-edits",
+      "semantic-search",
+      "agent-integration",
+      "collaborative-prototyping"
+    ]
+  },
+
+  "privacy": {
+    "telemetry": false,
+    "analytics": false,
+    "errorReporting": true
+  },
+
+  "workspace": {
+    "defaultPath": "/Users/mark/ai-experiments",
+    "autoCreateStructure": true,
+    "templateRepo": null,
+    "documentationStyle": "detailed-markdown"
+  }
+}

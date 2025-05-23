@@ -1,0 +1,13 @@
+# Backup files
+*.backup.*
+
+# Temporary files
+*.tmp
+.DS_Store
+
+# Configuration packages (keep examples)
+/*.json
+!example-*.json
+
+# Test files
+test/

@@ -1,0 +1,19 @@
+{
+  "name": "marksconfig",
+  "version": "1.0.0",
+  "exported_at": "2025-05-22T22:30:00Z",
+  "exported_by": "mark",
+  "system": "Darwin",
+  "claude_config_exists": true,
+  "claude_desktop_config_exists": true,
+  "custom_commands_exists": true,
+  "description": "Mark's collaborative AI prototyping configuration with step-by-step workflows",
+  "features": [
+    "Collaborative step-by-step workflows", 
+    "AI prototyping optimizations",
+    "Custom slash commands",
+    "MCP servers for Brave Search, Spotify, CalDAV, Luma API",
+    "Python/Poetry development setup",
+    "VS Code integration"
+  ]
+}

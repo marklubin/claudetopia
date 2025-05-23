@@ -1,0 +1,67 @@
+{
+  "mcpServers": {
+    "mobile-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@mobilenext/mobile-mcp@latest"
+      ]
+    },
+    "brave-search": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-brave-search"
+      ],
+      "env": {
+        "BRAVE_API_KEY": "BSADYeFNcsdn8milK-zBf69vRr5HLQw"
+      }
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/mark"
+      ]
+    },
+    "spotify": {
+      "command": "node",
+      "args": [
+        "/Users/mark/mcp_servers/spotify-mcp-server/build/index.js"
+      ]
+    },
+    "caldav": {
+      "command": "/Users/mark/caldav_mcp/.venv/bin/python",
+      "args": [
+        "-m",
+        "caldav_mcp.main"
+      ],
+      "env": {
+        "PYTHONPATH": "/Users/mark/caldav_mcp/src",
+        "MCP_CALDAV_URI": "https://cal.kairix.net",
+        "MCP_CALDAV_USERNAME": "mark",
+        "MCP_CALDAV_PASSWORD": "claude"
+      }
+    },
+    "Luma API MCP": {
+      "command": "/Users/mark/.local/bin/uv",
+      "args": [
+        "run",
+        "--python",
+        "python3.10",
+        "--with",
+        "mcp[cli]",
+        "--with",
+        "aiohttp",
+        "mcp",
+        "run",
+        "/Users/mark/mcp_servers/luma-api-mcp/server.py"
+      ],
+      "env": {
+        "LUMA_API_KEY": "luma-b75f1a4b-e4ed-4217-b56f-f8347923e661-3365c671-0439-402b-bdf9-fc16f2118c37"
+      }
+    }
+  },
+  "globalShortcut": "Alt+Ctrl+Space"
+}
